@@ -72,10 +72,10 @@ def display_poems_side_by_side(poem_left, poem_right, labels):
                     scroll_y = max(0, scroll_y - scroll_speed)
                 elif event.key == pygame.K_1 and not voted:
                     voted = True
-                    result_text = f"Left: {labels['left'].capitalize()} | Right: {labels['right'].capitalize()}"
+                    result_text = f"Left: {labels['left']} | Right: {labels['right']}"
                 elif event.key == pygame.K_2 and not voted:
                     voted = True
-                    result_text = f"Left: {labels['left'].capitalize()} | Right: {labels['right'].capitalize()}"
+                    result_text = f"Left: {labels['left']} | Right: {labels['right']}"
             elif event.type == pygame.MOUSEWHEEL:
                 scroll_y = min(max_scroll, max(0, scroll_y - event.y * scroll_speed))
 
@@ -100,7 +100,7 @@ def display_poems_side_by_side(poem_left, poem_right, labels):
 
         if voted:
             result_surface = TITLE_FONT.render(result_text, True, (120, 30, 30))
-            screen.blit(result_surface, (WIDTH // 2 - result_surface.get_width() // 2, 10))
+            screen.blit(result_surface, (WIDTH // 2 - result_surface.get_width() // 2, 20))
 
         pygame.display.flip()
 
@@ -118,7 +118,7 @@ def main():
         print("Invalid poem format.")
         return
 
-    poems = [(human, 'human'), (ai, 'ai')]
+    poems = [(human, 'Human'), (ai, 'AI')]
     random.shuffle(poems)
     labels = {'left': poems[0][1], 'right': poems[1][1]}
     display_poems_side_by_side(poems[0][0], poems[1][0], labels)
